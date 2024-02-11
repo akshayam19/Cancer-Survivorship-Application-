@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class SurveyWidget extends StatelessWidget {
   const SurveyWidget({ super.key });
@@ -7,7 +8,7 @@ abstract class SurveyWidget extends StatelessWidget {
 
   void storeData();
 }
-
+//Survey questions contain a surveywidget which describe the type of response (multiple choice, text input, etc)
 class SurveyQuestion extends StatelessWidget {
   final String question;
   final SurveyWidget type;
@@ -15,25 +16,27 @@ class SurveyQuestion extends StatelessWidget {
   
   @override
   Widget build(BuildContext context){
-
     return PopScope(
-      canPop: false,
+      canPop: false, //Disables the back button
       child: Scaffold(
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(question, textAlign: TextAlign.center, textScaler: const TextScaler.linear(1.5),),
-            ), type]
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(question, textAlign: TextAlign.center, textScaler: const TextScaler.linear(1.5),),
+              ),
+              type //SurveyWidget goes here
+            ]
           ),
         ),
       ),
     );
   }
 }
-
+//Multiple choice type response
 class MultipleChoice extends SurveyWidget{
   final List<String> options;
 
@@ -66,5 +69,28 @@ class MultipleChoice extends SurveyWidget{
     return Column(
       children: childrenList,
     );
+  }
+}
+//The survey that users must take upon first loading the app
+class FirstTimeSurvey{
+  static void run(BuildContext context) async{
+    var prefs = await SharedPreferences.getInstance();
+    if(prefs.getBool('survey') ?? false){
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const SurveyQuestion(
+          question: 'What is your favorite fruit?',
+          type: MultipleChoice(options: ['banana', 'apple', 'strawberry']),)));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const SurveyQuestion(
+          question: 'What race or ethnicity best describes you?',
+          type: MultipleChoice(options: ['American Indian or Alaskan Native or something somet somethings', 'Asian / Pacific Islander', 'Black or African American', 'Hispanic', 'White / Caucasian']),)));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const SurveyQuestion(
+          question: 'What was your sex at birth?',
+          type: MultipleChoice(options: ['Male', 'Female']),)));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const SurveyQuestion(
+          question: 'At what stage is your diagnosis?',
+          type: MultipleChoice(options: ['Recently diagnosed', 'In treatment', 'Cured']),)));
+      });
+      prefs.setBool('survey', true);
+    }
   }
 }
