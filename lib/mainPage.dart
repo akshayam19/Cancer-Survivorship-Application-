@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'theme.dart'; // Import theme file
 import 'second_page.dart'; // Import second_page file
+import 'login.dart';
 
 // Main page of app
 class MainPage extends StatefulWidget {
@@ -51,12 +52,12 @@ class _MainPageState extends State<MainPage> {
                   // pushes a page on top of the current one
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (BuildContext context) => const SecondPage(),
+                      builder: (BuildContext context) => const Login(),
                     ),
                   );
                 },
                 child: Text(
-                  "Go to second page",
+                  "Go to Login Page",
                   style: myTextStyle, // Use the defined text style
                 ),
               )
@@ -98,6 +99,7 @@ class _MainPageState extends State<MainPage> {
 
 // Navigation bar variable
 const _navBarItems = [
+
   NavigationDestination(
     icon: Icon(Icons.map),
     selectedIcon: Icon(Icons.map),
