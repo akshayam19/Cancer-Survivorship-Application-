@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:survivorship_care_plan_app/info_hub.dart';
+import 'pages/mainPage.dart'; // Import mainPage file
+import 'theme.dart'; // Import theme file
 
 void main() {
   runApp(MyApp());
@@ -14,5 +15,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
