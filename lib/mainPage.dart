@@ -12,8 +12,6 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   // Variables
   int currentPageIndex = 0;
-  String buttonName = "Click me";
-  bool isClicked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -25,60 +23,9 @@ class _MainPageState extends State<MainPage> {
 
       // body of app
       body: <Widget>[
-        // Roadmap page
-        Container(
-          width: double.infinity, // max width of app
-          height: double.infinity, // max height of app
-          color: Color.fromARGB(255, 100, 126, 148),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  onPrimary: Colors.red,
-                  primary: Colors.orange,
-                ),
-                onPressed: () {
-                  setState(() {
-                    buttonName = "Clicked";
-                  });
-                },
-                child: Text(buttonName),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  // pushes a page on top of the current one
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => const SecondPage(),
-                    ),
-                  );
-                },
-                child: Text(
-                  "Go to second page",
-                  style: myTextStyle, // Use the defined text style
-                ),
-              )
-            ],
-          ),
-        ),
-
-        // Resources page
-        Center(
-          child: Text(
-            "Selected Page: ${_navBarItems[currentPageIndex].label}",
-            style: myTextStyle, // Use the defined text style
-          ),
-        ),
-
-        // Settings page
-        Center(
-          child: Text(
-            "Selected Page: ${_navBarItems[currentPageIndex].label}",
-            style: myTextStyle, // Use the defined text style
-          ),
-        ),
+        roadmap(context), // Roadmap page at index 0
+        resources(context), // Resources page at index 1
+        settings(context), // Settings page at index 2
       ][currentPageIndex],
 
       // Navigation bar
@@ -96,7 +43,7 @@ class _MainPageState extends State<MainPage> {
   }
 }
 
-// Navigation bar variable
+// Navigation bar items
 const _navBarItems = [
   NavigationDestination(
     icon: Icon(Icons.map),
@@ -114,3 +61,67 @@ const _navBarItems = [
     label: 'Settings',
   ),
 ];
+
+// Roadmap page
+Widget roadmap(BuildContext context) {
+  return Container(
+    width: double.infinity, // max width of app
+    height: double.infinity, // max height of app
+    color: Color.fromARGB(255, 100, 126, 148),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            onPrimary: Colors.red,
+            primary: Colors.orange,
+          ),
+          onPressed: () {
+            // pushes a page on top of the current one
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) => const SecondPage(),
+              ),
+            );
+          },
+          child: Text("Stage 1"),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            // pushes a page on top of the current one
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) => const SecondPage(),
+              ),
+            );
+          },
+          child: Text(
+            "Stage 2", // Use the defined variable
+            style: myTextStyle, // Use the defined text style
+          ),
+        )
+      ],
+    ),
+  );
+}
+
+// Resources page
+Widget resources(BuildContext context) {
+  return Center(
+    child: Text(
+      "Selected Page: Resources",
+      style: myTextStyle, // Use the defined text style
+    ),
+  );
+}
+
+// Settings page
+Widget settings(BuildContext context) {
+  return Center(
+    child: Text(
+      "Selected Page: Settings",
+      style: myTextStyle, // Use the defined text style
+    ),
+  );
+}
