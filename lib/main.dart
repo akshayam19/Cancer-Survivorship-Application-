@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'mainPage.dart'; // Import mainPage file
+import 'pages/mainPage.dart'; // Import mainPage file
 import 'theme.dart'; // Import theme file
 
 // Main function runs the app
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 // App

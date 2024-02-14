@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'theme.dart'; // Import theme file
+import 'package:survivorship_care_plan_app/pages/survey.dart';
+import '../theme.dart'; // Import theme file
 import 'second_page.dart'; // Import second_page file
 
 // Main page of app
@@ -17,6 +18,7 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    FirstTimeSurvey.run(context); //Run first time survey
     return Scaffold(
       // App bar
       appBar: AppBar(
