@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:survivorship_care_plan_app/pages/info_hub.dart';
 import 'package:survivorship_care_plan_app/pages/survey.dart';
 import '../theme.dart'; // Import theme file
 import 'second_page.dart'; // Import second_page file
@@ -67,12 +68,7 @@ class _MainPageState extends State<MainPage> {
         ),
 
         // Resources page
-        Center(
-          child: Text(
-            "Selected Page: ${_navBarItems[currentPageIndex].label}",
-            style: myTextStyle, // Use the defined text style
-          ),
-        ),
+        Info_Hub(),
 
         // Settings page
         Center(
