@@ -1,6 +1,6 @@
 // new_page.dart
 import 'package:flutter/material.dart';
-import 'mainPage.dart';
+import 'package:survivorship_care_plan_app/pages/mainPage.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});

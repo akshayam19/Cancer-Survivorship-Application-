@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pages/mainPage.dart'; // Import mainPage file
 import 'theme.dart'; // Import theme file
-import 'login.dart';
+import 'pages/login.dart';
 
 // Main function runs the app
 void main() {
