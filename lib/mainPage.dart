@@ -116,3 +116,4 @@ const _navBarItems = [
     label: 'Settings',
   ),
 ];
+
