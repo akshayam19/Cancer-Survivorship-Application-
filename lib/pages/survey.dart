@@ -87,8 +87,8 @@ class FirstTimeSurvey{
           question: 'What was your sex at birth?',
           type: MultipleChoice(options: ['Male', 'Female']),)));
         Navigator.push(context, MaterialPageRoute(builder: (context) => const SurveyQuestion(
-          question: 'At what stage is your diagnosis?',
-          type: MultipleChoice(options: ['Recently diagnosed', 'In treatment', 'Cured']),)));
+          question: 'Where are you in your cancer journey?',
+          type: MultipleChoice(options: ['Recently Diagnosed', 'In treatment', 'Post-Treatment']),)));
       });
       prefs.setBool('survey', true);
     }
