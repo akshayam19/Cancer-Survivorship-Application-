@@ -20,7 +20,22 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       // App bar
       appBar: AppBar(
-        title: const Text("SCP"),
+        leading: const Icon(Icons.account_circle_rounded),
+        title: const Text('Survivor Care Plan'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.notifications),
+            onPressed: () {
+              // Handle notifications icon press
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.star),
+            onPressed: () {
+              // Handle goals icon press
+            },
+          ),
+        ],
       ),
 
       // body of app
@@ -146,7 +161,7 @@ Widget roadmap(BuildContext context) {
         stage: "Stage\nPost-treatment",
         icon: Icon(
           Icons.flag,
-          color: Color.fromARGB(255, 123, 130, 91),
+          color: Color.fromARGB(255, 175, 201, 58),
           size: 80,
         ),
         nextPage: "post-treatment",
@@ -157,7 +172,7 @@ Widget roadmap(BuildContext context) {
 
 // Resources page
 Widget resources(BuildContext context) {
-  return Center(
+  return const Center(
     child: Text(
       "Selected Page: Resources",
       style: myTextStyle, // Use the defined text style
@@ -167,7 +182,7 @@ Widget resources(BuildContext context) {
 
 // Settings page
 Widget settings(BuildContext context) {
-  return Center(
+  return const Center(
     child: Text(
       "Selected Page: Settings",
       style: myTextStyle, // Use the defined text style
