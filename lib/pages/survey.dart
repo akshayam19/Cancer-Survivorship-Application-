@@ -124,7 +124,7 @@ class MultipleChoice extends SurveyWidget{
 class FirstTimeSurvey{
   static void run(BuildContext context) async{
     var prefs = await SharedPreferences.getInstance();
-    if(prefs.getBool('survey') ?? false){
+    if(!(prefs.getBool('survey') ?? false)){
       WidgetsBinding.instance.addPostFrameCallback((_) {
         Navigator.push(context, MaterialPageRoute(builder: (context) => const SurveyQuestion(
           questionNumber: 3,

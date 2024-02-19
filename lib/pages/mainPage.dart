@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:survivorship_care_plan_app/pages/survey.dart';
-import '../theme.dart'; // Import theme file
-import 'second_page.dart'; // Import second_page file
+import '/theme.dart';
+import 'package:survivorship_care_plan_app/roadmap_components/timeline_tile.dart';
 
 // Main page of app
 class MainPage extends StatefulWidget {
@@ -20,7 +20,22 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       // App bar
       appBar: AppBar(
-        title: const Text("SCP"),
+        leading: const Icon(Icons.account_circle_rounded),
+        title: const Text('Survivor Care Plan'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.notifications),
+            onPressed: () {
+              // Handle notifications icon press
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.star),
+            onPressed: () {
+              // Handle goals icon press
+            },
+          ),
+        ],
       ),
 
       // body of app
@@ -66,51 +81,98 @@ const _navBarItems = [
 
 // Roadmap page
 Widget roadmap(BuildContext context) {
-  return Container(
-    width: double.infinity, // max width of app
-    height: double.infinity, // max height of app
-    color: Color.fromARGB(255, 100, 126, 148),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            onPrimary: Colors.red,
-            primary: Colors.orange,
-          ),
-          onPressed: () {
-            // pushes a page on top of the current one
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (BuildContext context) => const SecondPage(),
-              ),
-            );
-          },
-          child: Text("Stage 1"),
+  return ListView(
+    children: const [
+      // Survey tile
+      MyTimelineTile(
+        isFirst: true,
+        isLast: false,
+        isPast: true,
+        stage: "Initial survey",
+        icon: Icon(
+          Icons.check_box_outline_blank,
+          color: Colors.transparent, // make icon blank
+          size: 80,
         ),
-        ElevatedButton(
-          onPressed: () {
-            // pushes a page on top of the current one
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (BuildContext context) => const SecondPage(),
-              ),
-            );
-          },
-          child: Text(
-            "Stage 2", // Use the defined variable
-            style: myTextStyle, // Use the defined text style
-          ),
-        )
-      ],
-    ),
+        nextPage: "survey",
+      ),
+
+      // Stage 1 tile
+      MyTimelineTile(
+        isFirst: false,
+        isLast: false,
+        isPast: true,
+        stage: "Stage:\nDiagnosis",
+        icon: Icon(
+          Icons.medical_information,
+          color: Color.fromARGB(255, 94, 75, 75),
+          size: 80,
+        ),
+        nextPage: "diagnosis",
+      ),
+
+      // Survey tile
+      MyTimelineTile(
+        isFirst: false,
+        isLast: false,
+        isPast: false,
+        stage: "Survey",
+        icon: Icon(
+          Icons.check_box_outline_blank,
+          color: Colors.transparent,
+          size: 80,
+        ),
+        nextPage: "survey",
+      ),
+
+      // Stage 2 tile
+      MyTimelineTile(
+        isFirst: false,
+        isLast: false,
+        isPast: false,
+        stage: "Stage:\nTreatment",
+        icon: Icon(
+          Icons.health_and_safety,
+          color: Color.fromARGB(255, 243, 142, 33),
+          size: 80,
+        ),
+        nextPage: "treatment",
+      ),
+
+      // Middle timeline
+      MyTimelineTile(
+        isFirst: false,
+        isLast: false,
+        isPast: false,
+        stage: "Survey",
+        icon: Icon(
+          Icons.check_box_outline_blank,
+          color: Colors.transparent,
+          size: 80,
+        ),
+        nextPage: "survey",
+      ),
+
+      // End timeline
+      MyTimelineTile(
+        isFirst: false,
+        isLast: true,
+        isPast: false,
+        stage: "Stage\nPost-treatment",
+        icon: Icon(
+          Icons.flag,
+          color: Color.fromARGB(255, 175, 201, 58),
+          size: 80,
+        ),
+        nextPage: "post-treatment",
+      ),
+    ],
   );
 }
 
 // Resources page
 Widget resources(BuildContext context) {
-  return Center(
+  return const Center(
     child: Text(
       "Selected Page: Resources",
       style: myTextStyle, // Use the defined text style
@@ -120,7 +182,7 @@ Widget resources(BuildContext context) {
 
 // Settings page
 Widget settings(BuildContext context) {
-  return Center(
+  return const Center(
     child: Text(
       "Selected Page: Settings",
       style: myTextStyle, // Use the defined text style
