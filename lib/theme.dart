@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 final ThemeData myTheme = ThemeData(
   primaryColor: const Color.fromARGB(255, 33, 159, 243),
   appBarTheme: appBarTheme,
-  scaffoldBackgroundColor: Color.fromARGB(255, 234, 234, 234),
+  scaffoldBackgroundColor: const Color.fromARGB(255, 234, 234, 234),
   navigationBarTheme: bottomNavBarTheme,
 );
 
@@ -25,6 +25,12 @@ const NavigationBarThemeData bottomNavBarTheme = NavigationBarThemeData(
 // You can also define text styles, button styles, etc.
 const TextStyle myTextStyle = TextStyle(
   color: Colors.black,
+  fontSize: 16.0,
+  fontWeight: FontWeight.normal,
+);
+
+const TextStyle myTextStyleWhite = TextStyle(
+  color: Colors.white,
   fontSize: 16.0,
   fontWeight: FontWeight.normal,
 );
