@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:survivorship_care_plan_app/pages/info_hub.dart';
 import 'package:survivorship_care_plan_app/pages/survey.dart';
 import '/theme.dart';
 import 'package:survivorship_care_plan_app/roadmap_components/timeline_tile.dart';
@@ -173,10 +174,7 @@ Widget roadmap(BuildContext context) {
 // Resources page
 Widget resources(BuildContext context) {
   return const Center(
-    child: Text(
-      "Selected Page: Resources",
-      style: myTextStyle, // Use the defined text style
-    ),
+    child: Info_Hub()
   );
 }
 
