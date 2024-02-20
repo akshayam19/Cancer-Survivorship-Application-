@@ -174,10 +174,7 @@ Widget roadmap(BuildContext context) {
 // Resources page
 Widget resources(BuildContext context) {
   return const Center(
-    child: Text(
-      "Selected Page: Resources",
-      style: myTextStyle, // Use the defined text style
-    ),
+    child: Info_Hub()
   );
 }
 

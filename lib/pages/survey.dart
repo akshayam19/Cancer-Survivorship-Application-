@@ -87,7 +87,7 @@ class SurveyQuestion extends StatelessWidget {
                       Navigator.of(context).pop();
                     }, child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
-                      children: [Text('Skip', textAlign: TextAlign.center, style: myTextStyle,), Icon(Icons.fast_forward, color: myTheme.primaryColor,)] 
+                      children: [const Text('Skip', textAlign: TextAlign.center, style: myTextStyle,), Icon(Icons.fast_forward, color: myTheme.primaryColor,)] 
                     )),
                 ],
               )
