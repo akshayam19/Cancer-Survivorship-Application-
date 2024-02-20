@@ -64,18 +64,18 @@ class _MainPageState extends State<MainPage> {
 // Navigation bar items
 const _navBarItems = [
   NavigationDestination(
-    icon: Icon(Icons.map),
-    selectedIcon: Icon(Icons.map),
+    icon: Icon(Icons.map_outlined),
+    selectedIcon: Icon(Icons.map_rounded),
     label: 'Roadmap',
   ),
   NavigationDestination(
-    icon: Icon(Icons.book),
-    selectedIcon: Icon(Icons.book),
+    icon: Icon(Icons.book_outlined),
+    selectedIcon: Icon(Icons.book_rounded),
     label: 'Resources',
   ),
   NavigationDestination(
-    icon: Icon(Icons.settings),
-    selectedIcon: Icon(Icons.settings),
+    icon: Icon(Icons.settings_outlined),
+    selectedIcon: Icon(Icons.settings_rounded),
     label: 'Settings',
   ),
 ];
@@ -169,6 +169,7 @@ Widget roadmap(BuildContext context) {
       ),
     ],
   );
+  
 }
 
 // Resources page
