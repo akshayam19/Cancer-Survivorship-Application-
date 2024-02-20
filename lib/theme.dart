@@ -29,6 +29,12 @@ const TextStyle myTextStyle = TextStyle(
   fontWeight: FontWeight.normal,
 );
 
+const TextStyle myTextStyleWhite = TextStyle(
+  color: Colors.white,
+  fontSize: 16.0,
+  fontWeight: FontWeight.normal,
+);
+
 // If you have more complex themes, you can create a class for it
 class MyAppTheme {
   static ThemeData lightTheme = ThemeData(

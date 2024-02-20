@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:survivorship_care_plan_app/theme.dart';
 
 abstract class SurveyWidget extends StatelessWidget {
   const SurveyWidget({ super.key });
@@ -19,6 +20,7 @@ class SurveyQuestion extends StatelessWidget {
   
   @override
   Widget build(BuildContext context){
+    
     List<Widget> progress = [];
     for(int i = 0; i < questionNumber; i++){
       progress.add(Padding(
@@ -28,7 +30,7 @@ class SurveyQuestion extends StatelessWidget {
           height: 15,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
-            color: Colors.purple
+            color: myTheme.primaryColor
           )
         ),
       ));
@@ -41,7 +43,7 @@ class SurveyQuestion extends StatelessWidget {
           height: 15,
           decoration: BoxDecoration(
             border: Border.all(
-              color: Colors.purple,
+              color: myTheme.primaryColor,
               width: 2.0, 
             ),
             borderRadius: BorderRadius.circular(10.0)
@@ -53,7 +55,7 @@ class SurveyQuestion extends StatelessWidget {
     return PopScope(
       canPop: false, //Disables the back button
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 100, 126, 148),
+        backgroundColor: myTheme.scaffoldBackgroundColor,
         body: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,16 +70,27 @@ class SurveyQuestion extends StatelessWidget {
 
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(question, textAlign: TextAlign.center, textScaler: const TextScaler.linear(2),),
+                padding: const EdgeInsets.only(top: 25),
+                child: Text(question, textAlign: TextAlign.center, style: myTextStyle, textScaler: const TextScaler.linear(1.618),),
               ),
-              Column(
-                children: [type],
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [type],
+                ),
               ),
-              ElevatedButton( 
-                onPressed: () {
-                  Navigator.of(context).pop();
-                }, child: Text('Skip', textAlign: TextAlign.center,)) //SurveyWidget goes here
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    }, child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [Text('Skip', textAlign: TextAlign.center, style: myTextStyle,), Icon(Icons.fast_forward, color: myTheme.primaryColor,)] 
+                    )),
+                ],
+              )
             ]
           ),
         ),
@@ -104,11 +117,17 @@ class MultipleChoice extends SurveyWidget{
       child: SizedBox(
         width: 400,
         height: 60,
-        child: ElevatedButton( 
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            elevation: 15, // Size of shadow
+            shadowColor: const Color.fromARGB(255, 70, 90, 106),
+            backgroundColor: const Color.fromARGB(255, 62, 146, 196),
+            foregroundColor: Colors.white, // text color
+          ),
           onPressed: () {
             storeData(); //data is stored at this point
             Navigator.of(context).pop();
-          }, child: Text(e, textAlign: TextAlign.center, textScaler: TextScaler.linear(1.25),)),
+          }, child: Text(e, textAlign: TextAlign.center, style: myTextStyleWhite,)),
       ),
       )
     ).toList());
