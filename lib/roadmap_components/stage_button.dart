@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:survivorship_care_plan_app/roadmap_components/roadmap_pages/second_page.dart';
+import 'package:survivorship_care_plan_app/roadmap_components/roadmap_pages/pre_treatment.dart';
 import 'package:survivorship_care_plan_app/roadmap_components/roadmap_pages/diagnosis_page.dart';
 import 'package:survivorship_care_plan_app/roadmap_components/roadmap_pages/treatment_page.dart';
 import 'package:survivorship_care_plan_app/roadmap_components/roadmap_pages/post_treatment_page.dart';
@@ -33,23 +33,26 @@ class StageCard extends StatelessWidget {
 
           // On press takes to different page
           onPressed: () {
-            Widget Function(BuildContext) builder;
+            Widget Function(BuildContext)? builder;
             if (navigationPage == "diagnosis") {
               builder = (BuildContext context) => const DiagnosisPage();
+            } else if (navigationPage == "pre-treatment") {
+              builder = (BuildContext context) => const PreTreatmentPage();
             } else if (navigationPage == "treatment") {
               builder = (BuildContext context) => const TreatmentPage();
             } else if (navigationPage == "post-treatment") {
               builder = (BuildContext context) => const PostTreatmentPage();
             } else {
-              builder = (BuildContext context) =>
-                  const SecondPage(); // TO DO: change to pop up survey
+              builder = null; // Do nothing
             }
             // Navigate to page based on navigationPage
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: builder,
-              ),
-            );
+            if (builder != null) {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: builder,
+                ),
+              );
+            }
           },
         ),
       ),
