@@ -1,6 +1,7 @@
 // new_page.dart
 import 'package:flutter/material.dart';
 import 'package:survivorship_care_plan_app/pages/mainPage.dart';
+import 'package:survivorship_care_plan_app/theme.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -18,13 +19,19 @@ class Login extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 60.0),
               child: Center(
-                child: SizedBox(
-                    width: 200,
-                    height: 150,
-                    /*decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(50.0)),*/
-                    child: Image.asset('lib/images/flutter-logo.png')),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("SCP APP", style: myTextStyle, textScaler: TextScaler.linear(2.5),),
+                    SizedBox(
+                        width: 200,
+                        height: 150,
+                        /*decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(50.0)),*/
+                        child: Image.asset('lib/images/cancerRibbon.png')),
+                  ],
+                ),
               ),
             ),
             const Padding(

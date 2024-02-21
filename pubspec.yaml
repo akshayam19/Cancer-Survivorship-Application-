@@ -85,6 +85,7 @@ flutter:
     - lib/images/post-treatment4.png
     - lib/images/post-treatment5.png
     - lib/images/post-treatment6.png
+    - lib/images/cancerRibbon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
