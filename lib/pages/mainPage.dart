@@ -89,7 +89,7 @@ Widget roadmap(BuildContext context) {
         isFirst: true,
         isLast: false,
         isPast: true,
-        stage: "Initial survey",
+        stage: "Start",
         icon: Icon(
           Icons.check_box_outline_blank,
           color: Colors.transparent, // make icon blank
@@ -159,7 +159,7 @@ Widget roadmap(BuildContext context) {
         isFirst: false,
         isLast: true,
         isPast: false,
-        stage: "Survey",
+        stage: "Finish",
         icon: Icon(
           Icons.flag,
           color: Color.fromARGB(255, 175, 201, 58),
@@ -169,20 +169,14 @@ Widget roadmap(BuildContext context) {
       ),
     ],
   );
-  
 }
 
 // Resources page
 Widget resources(BuildContext context) {
-  return const Center(
-    child: Info_Hub_Rebuild()
-  );
+  return const Center(child: Info_Hub_Rebuild());
 }
 
 // Settings page
 Widget settings(BuildContext context) {
-  return const Center(
-    child: Setting()
-  );
+  return const Center(child: Setting());
 }
-
