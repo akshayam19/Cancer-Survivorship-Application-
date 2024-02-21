@@ -169,20 +169,14 @@ Widget roadmap(BuildContext context) {
       ),
     ],
   );
-  
 }
 
 // Resources page
 Widget resources(BuildContext context) {
-  return const Center(
-    child: Info_Hub_Rebuild()
-  );
+  return const Center(child: Info_Hub_Rebuild());
 }
 
 // Settings page
 Widget settings(BuildContext context) {
-  return const Center(
-    child: Setting()
-  );
+  return const Center(child: Setting());
 }
-
