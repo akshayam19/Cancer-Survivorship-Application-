@@ -89,7 +89,7 @@ Widget roadmap(BuildContext context) {
         isFirst: true,
         isLast: false,
         isPast: true,
-        stage: "Initial survey",
+        stage: "Start",
         icon: Icon(
           Icons.check_box_outline_blank,
           color: Colors.transparent, // make icon blank
@@ -159,7 +159,7 @@ Widget roadmap(BuildContext context) {
         isFirst: false,
         isLast: true,
         isPast: false,
-        stage: "Survey",
+        stage: "Finish",
         icon: Icon(
           Icons.flag,
           color: Color.fromARGB(255, 175, 201, 58),
