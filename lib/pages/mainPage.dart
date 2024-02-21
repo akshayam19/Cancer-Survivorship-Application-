@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:survivorship_care_plan_app/pages/info_hub.dart';
+import 'package:survivorship_care_plan_app/pages/setting.dart';
 import 'package:survivorship_care_plan_app/pages/survey.dart';
-import '/theme.dart';
 import 'package:survivorship_care_plan_app/roadmap_components/timeline_tile.dart';
 
 // Main page of app
@@ -64,18 +64,18 @@ class _MainPageState extends State<MainPage> {
 // Navigation bar items
 const _navBarItems = [
   NavigationDestination(
-    icon: Icon(Icons.map),
-    selectedIcon: Icon(Icons.map),
+    icon: Icon(Icons.map_outlined),
+    selectedIcon: Icon(Icons.map_rounded),
     label: 'Roadmap',
   ),
   NavigationDestination(
-    icon: Icon(Icons.book),
-    selectedIcon: Icon(Icons.book),
+    icon: Icon(Icons.book_outlined),
+    selectedIcon: Icon(Icons.book_rounded),
     label: 'Resources',
   ),
   NavigationDestination(
-    icon: Icon(Icons.settings),
-    selectedIcon: Icon(Icons.settings),
+    icon: Icon(Icons.settings_outlined),
+    selectedIcon: Icon(Icons.settings_rounded),
     label: 'Settings',
   ),
 ];
@@ -169,19 +169,20 @@ Widget roadmap(BuildContext context) {
       ),
     ],
   );
+  
 }
 
 // Resources page
 Widget resources(BuildContext context) {
-  return const Center(child: Info_Hub());
+  return const Center(
+    child: Info_Hub_Rebuild()
+  );
 }
 
 // Settings page
 Widget settings(BuildContext context) {
   return const Center(
-    child: Text(
-      "Selected Page: Settings",
-      style: myTextStyle, // Use the defined text style
-    ),
+    child: Setting()
   );
 }
+
