@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:survivorship_care_plan_app/pages/info_hub.dart';
+import 'package:survivorship_care_plan_app/pages/setting.dart';
 import 'package:survivorship_care_plan_app/pages/survey.dart';
 import '/theme.dart';
 import 'package:survivorship_care_plan_app/roadmap_components/timeline_tile.dart';
@@ -175,16 +176,14 @@ Widget roadmap(BuildContext context) {
 // Resources page
 Widget resources(BuildContext context) {
   return const Center(
-    child: Info_Hub()
+    child: Info_Hub_Rebuild()
   );
 }
 
 // Settings page
 Widget settings(BuildContext context) {
   return const Center(
-    child: Text(
-      "Selected Page: Settings",
-      style: myTextStyle, // Use the defined text style
-    ),
+    child: Setting()
   );
 }
+
