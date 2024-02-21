@@ -49,7 +49,7 @@ class StageCard extends StatelessWidget {
             if (builder != null) {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: builder!,
+                  builder: builder,
                 ),
               );
             }
