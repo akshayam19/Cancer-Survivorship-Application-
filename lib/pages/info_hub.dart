@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:survivorship_care_plan_app/theme.dart';
+import 'package:flutter/rendering.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'package:survivorship_care_plan_app/theme.dart';
 
-class ResourceCategories extends StatelessWidget {
-  final Map<String, Icon> categories;
-
-  const ResourceCategories({super.key, required this.categories});
-  
-  @override
-  Widget build(BuildContext context) {
-    Map<String, List<Resource>> urls = {
+final Map<String, List<Resource>> urls = {
       'Physical Activity': 
       [ 
         Resource(synopsis: 'Healthy living means making positive behavior changes as part of an ongoing, life-long process. To choose areas for improvement, we recommend focusing on these 6 pillars, which we call the “Mix of Six.” Each supports the other, and the synergy of all 6 leads to the most success.', text: '6 Lifestyle Changes to Improve Your Cancer Care', url: 'https://www.cancer.net/blog/2018-09/6-lifestyle-changes-improve-your-cancer-care'), 
@@ -50,86 +44,18 @@ class ResourceCategories extends StatelessWidget {
         Resource(synopsis: 'Black women face an array of disparities when it comes to cancer care, from lack of representation in clinical trials to barriers to care, poorer outcomes, and higher mortality rates.', text: '7 of the Best Cancer Support Organizations for Black Women', url: 'https://www.everydayhealth.com/breast-cancer/the-best-cancer-support-organizations-for-black-women/'), 
         Resource(synopsis: 'This week (April 11-17) is National Minority Cancer Awareness Week! According to the American Cancer Society, minority groups in the United States continue to bear a greater cancer burden. However, there are many organizations that offer help to minorities affected by cancer. We’ve listed some of our most recommended organizations below.', text: 'Resources for National Minority Cancer Week ', url: 'https://www.cancercare.org/blog/resources-for-national-minority-cancer-awareness-week')
       ]
-    };
+};
 
-    List<Widget> categoryWidgets = [];
-    categoryWidgets.add(
-      SearchAnchor(
-        builder: (BuildContext context, SearchController controller) {
-          return SizedBox(
-            width: 300,
-            child: SearchBar(
-              backgroundColor: MaterialStatePropertyAll<Color?>(myTheme.scaffoldBackgroundColor),
-              textStyle: MaterialStatePropertyAll<TextStyle?>(myTextStyle),
-              controller: controller,
-              padding: const MaterialStatePropertyAll<EdgeInsets>(
-                  EdgeInsets.symmetric(horizontal: 16.0)),
-              onTap: () {
-                controller.openView();
-              },
-              onChanged: (_) {
-                controller.openView();
-              },
-              leading: const Icon(Icons.search),
-            ),
-          );
-        }, 
-        suggestionsBuilder:
-          (BuildContext context, SearchController controller) {
-            return List<ListTile>.generate(5, (int index) {
-              final String item = 'item $index';
-              return ListTile(
-                title: Text(item),
-                onTap: () {
-                  // setState(() {
-                  //   controller.closeView(item);
-                  // });
-                },
-              );
-            });
-          }),
-    );
-    for(var entry in categories.entries){
-      categoryWidgets.add(
-        OutlinedButton(
-          style: ButtonStyle(
-            shape: MaterialStateProperty.all<BeveledRectangleBorder>(const BeveledRectangleBorder()),
-            minimumSize: const MaterialStatePropertyAll(Size(300, 100)),
-            maximumSize: const MaterialStatePropertyAll(Size(375, 100)),
-            backgroundColor: const MaterialStatePropertyAll(Color.fromARGB(153, 33, 159, 243))
-          ),
-          onPressed: () => {
-            Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Resources(name: entry.key, urls: urls[entry.key]!),
-                  ),
-            )
-          },
-          child: Row(
-            children: [Padding(
-              padding: const EdgeInsets.only(left: 0),
-              child: entry.value,
-            ), Padding(
-              padding: const EdgeInsets.only(left: 30),
-              child: Text(entry.key, style: myTextStyleWhite, textScaler: const TextScaler.linear(1.25),),
-            )] 
-          ),
-        ),
-      );
-    }
-
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: categoryWidgets
-    );
-  }
-}
 
 class Resources extends StatelessWidget {
   final String name;
   final List<Resource> urls;
-  const Resources({super.key, required this.name, required this.urls});
+
+  const Resources({
+    super.key,
+    required this.name,
+    required this.urls,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +75,11 @@ class Resources extends StatelessWidget {
                 contentPadding: const EdgeInsets.all(16.0), // Adjust padding as needed
                 title: Text(
                   urls[index].text,
-                  style: myTextStyle,
+                  style: TextStyle (
+                    color: Colors.white,
+                    fontSize: 17.0,
+                    fontWeight: FontWeight.normal,
+                  ),
                   textScaler: const TextScaler.linear(1.1),
                 ),
                 subtitle: Text(
@@ -175,23 +105,383 @@ class Resources extends StatelessWidget {
 class Resource {
   String text;
   String url;
-  String synopsis;
+  String synopsis;  
 
   Resource({required this.text, required this.url, required this.synopsis});
 }
 
-class Info_Hub extends StatelessWidget {
-  const Info_Hub({super.key});
+
+const Color darkBlue = Color.fromARGB(255, 18, 32, 47);
+
+class Info_Hub_Rebuild extends StatelessWidget {
+  const Info_Hub_Rebuild({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const ResourceCategories(categories: {
-    'Physical Activity': Icon(Icons.fitness_center, size: 50, color: Color.fromARGB(255, 251, 209, 162)),
-    'Nutrition': Icon(Icons.fastfood, size: 50, color: Color.fromARGB(255, 251, 209, 162)),
-    'Spirituality': Icon(Icons.auto_awesome, size: 50, color: Color.fromARGB(255, 251, 209, 162)),
-    'More About Cancer': Icon(Icons.info, size: 50, color: Color.fromARGB(255, 251, 209, 162)),
-    'Resources': Icon(Icons.library_books, size: 50, color: Color.fromARGB(255, 251, 209, 162),)
-    });
+    return MaterialApp(
+      theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: darkBlue),
+      debugShowCheckedModeBanner: false,
+      home: const Scaffold(
+        body: Center(
+          child: ExampleParallax(),
+        ),
+      ),
+    );
   }
 }
 
+class ExampleParallax extends StatelessWidget {
+  const ExampleParallax({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          for (final location in locations)
+            LocationListItem(
+              imageUrl: location.imageUrl,
+              name: location.name,
+              country: location.place,
+              resources: location.resources,
+              
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class LocationListItem extends StatelessWidget {
+  LocationListItem({
+    super.key,
+    required this.imageUrl,
+    required this.name,
+    required this.country,
+    required this.resources, 
+  });
+
+  final String imageUrl;
+  final String name;
+  final String country;
+  final GlobalKey _backgroundImageKey = GlobalKey();
+  final List<Resource> resources;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        // Navigate to the Resources screen when tapped
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Resources(
+              name: name,
+              urls: resources,
+            ),
+          ),
+        );
+      },
+      child: Padding (
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+        child: AspectRatio(
+          aspectRatio: 16 / 9,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: Stack(
+              children: [
+                _buildParallaxBackground(context),
+                _buildGradient(),
+                _buildTitleAndSubtitle(),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildParallaxBackground(BuildContext context) {
+    return Flow(
+      delegate: ParallaxFlowDelegate(
+        scrollable: Scrollable.of(context),
+        listItemContext: context,
+        backgroundImageKey: _backgroundImageKey,
+      ),
+      children: [
+        Image.network(
+          imageUrl,
+          key: _backgroundImageKey,
+          fit: BoxFit.cover,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildGradient() {
+    return Positioned.fill(
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.transparent, Colors.black.withOpacity(0.7)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: const [0.6, 0.95],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTitleAndSubtitle() {
+    return Positioned(
+      left: 20,
+      bottom: 20,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            name,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Text(
+            country,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ParallaxFlowDelegate extends FlowDelegate {
+  ParallaxFlowDelegate({
+    required this.scrollable,
+    required this.listItemContext,
+    required this.backgroundImageKey,
+  }) : super(repaint: scrollable.position);
+
+
+  final ScrollableState scrollable;
+  final BuildContext listItemContext;
+  final GlobalKey backgroundImageKey;
+
+  @override
+  BoxConstraints getConstraintsForChild(int i, BoxConstraints constraints) {
+    return BoxConstraints.tightFor(
+      width: constraints.maxWidth,
+    );
+  }
+
+  @override
+  void paintChildren(FlowPaintingContext context) {
+    // Calculate the position of this list item within the viewport.
+    final scrollableBox = scrollable.context.findRenderObject() as RenderBox;
+    final listItemBox = listItemContext.findRenderObject() as RenderBox;
+    final listItemOffset = listItemBox.localToGlobal(
+        listItemBox.size.centerLeft(Offset.zero),
+        ancestor: scrollableBox);
+
+    // Determine the percent position of this list item within the
+    // scrollable area.
+    final viewportDimension = scrollable.position.viewportDimension;
+    final scrollFraction =
+        (listItemOffset.dy / viewportDimension).clamp(0.0, 1.0);
+
+    // Calculate the vertical alignment of the background
+    // based on the scroll percent.
+    final verticalAlignment = Alignment(0.0, scrollFraction * 2 - 1);
+
+    // Convert the background alignment into a pixel offset for
+    // painting purposes.
+    final backgroundSize =
+        (backgroundImageKey.currentContext!.findRenderObject() as RenderBox)
+            .size;
+    final listItemSize = context.size;
+    final childRect =
+        verticalAlignment.inscribe(backgroundSize, Offset.zero & listItemSize);
+
+    // Paint the background.
+    context.paintChild(
+      0,
+      transform:
+          Transform.translate(offset: Offset(0.0, childRect.top)).transform,
+    );
+  }
+
+  @override
+  bool shouldRepaint(ParallaxFlowDelegate oldDelegate) {
+    return scrollable != oldDelegate.scrollable ||
+        listItemContext != oldDelegate.listItemContext ||
+        backgroundImageKey != oldDelegate.backgroundImageKey;
+  }
+}
+
+class Parallax extends SingleChildRenderObjectWidget {
+  const Parallax({
+    super.key,
+    required Widget background,
+  }) : super(child: background);
+
+  @override
+  RenderObject createRenderObject(BuildContext context) {
+    return RenderParallax(scrollable: Scrollable.of(context));
+  }
+
+  @override
+  void updateRenderObject(
+      BuildContext context, covariant RenderParallax renderObject) {
+    renderObject.scrollable = Scrollable.of(context);
+  }
+}
+
+class ParallaxParentData extends ContainerBoxParentData<RenderBox> {}
+
+class RenderParallax extends RenderBox
+    with RenderObjectWithChildMixin<RenderBox>, RenderProxyBoxMixin {
+  RenderParallax({
+    required ScrollableState scrollable,
+  }) : _scrollable = scrollable;
+
+  ScrollableState _scrollable;
+
+  ScrollableState get scrollable => _scrollable;
+
+  set scrollable(ScrollableState value) {
+    if (value != _scrollable) {
+      if (attached) {
+        _scrollable.position.removeListener(markNeedsLayout);
+      }
+      _scrollable = value;
+      if (attached) {
+        _scrollable.position.addListener(markNeedsLayout);
+      }
+    }
+  }
+
+  @override
+  void attach(covariant PipelineOwner owner) {
+    super.attach(owner);
+    _scrollable.position.addListener(markNeedsLayout);
+  }
+
+  @override
+  void detach() {
+    _scrollable.position.removeListener(markNeedsLayout);
+    super.detach();
+  }
+
+  @override
+  void setupParentData(covariant RenderObject child) {
+    if (child.parentData is! ParallaxParentData) {
+      child.parentData = ParallaxParentData();
+    }
+  }
+
+  @override
+  void performLayout() {
+    size = constraints.biggest;
+
+    // Force the background to take up all available width
+    // and then scale its height based on the image's aspect ratio.
+    final background = child!;
+    final backgroundImageConstraints =
+        BoxConstraints.tightFor(width: size.width);
+    background.layout(backgroundImageConstraints, parentUsesSize: true);
+
+    // Set the background's local offset, which is zero.
+    (background.parentData as ParallaxParentData).offset = Offset.zero;
+  }
+
+  @override
+  void paint(PaintingContext context, Offset offset) {
+    // Get the size of the scrollable area.
+    final viewportDimension = scrollable.position.viewportDimension;
+
+    // Calculate the global position of this list item.
+    final scrollableBox = scrollable.context.findRenderObject() as RenderBox;
+    final backgroundOffset =
+        localToGlobal(size.centerLeft(Offset.zero), ancestor: scrollableBox);
+
+    // Determine the percent position of this list item within the
+    // scrollable area.
+    final scrollFraction =
+        (backgroundOffset.dy / viewportDimension).clamp(0.0, 1.0);
+
+    // Calculate the vertical alignment of the background
+    // based on the scroll percent.
+    final verticalAlignment = Alignment(0.0, scrollFraction * 2 - 1);
+
+    // Convert the background alignment into a pixel offset for
+    // painting purposes.
+    final background = child!;
+    final backgroundSize = background.size;
+    final listItemSize = size;
+    final childRect =
+        verticalAlignment.inscribe(backgroundSize, Offset.zero & listItemSize);
+
+    // Paint the background.
+    context.paintChild(
+        background,
+        (background.parentData as ParallaxParentData).offset +
+            offset +
+            Offset(0.0, childRect.top));
+  }
+}
+
+class Location {
+  const Location({
+    required this.name,
+    required this.place,
+    required this.imageUrl,
+    required this.resources,
+  });
+
+  final String name;
+  final String place;
+  final String imageUrl;
+  final List<Resource> resources;
+}
+
+final locations = [
+  Location(
+    name: 'Physical Activity',
+    place: 'Exercise improves quality of life',
+    imageUrl: 'https://www.cdc.gov/cancer/survivors/healthy-living-guides/images/walking-outdoors-700-sq.jpg?_=35650',
+    resources: urls['Physical Activity']!,
+  ),
+  Location(
+    name: 'Nutrition',
+    place: 'Fuel your soilders in the body',
+    imageUrl: 'https://blackdoctor.org/wp-content/uploads/2023/10/doctor.jpg',
+    resources: urls['Nutrition']!,
+  ),
+  Location(
+    name: 'Spirituality',
+    place: 'Emotion matters',
+    imageUrl: 'https://drkeppy.com/wp-content/uploads/2022/04/spiritual-health.jpg',
+    resources: urls['Spirituality']!,
+  ),
+  Location(
+    name: 'More About Cancer',
+    place: 'Post treatment, further support',
+    imageUrl: 'https://res-1.cloudinary.com/sharecare/image/upload/c_fill,f_auto,w_640/v1648584148/articles/treatment-after-kidney-cancer-surgery',
+    resources: urls['More About Cancer']!,
+  ),
+  Location(
+    name: 'Resources',
+    place: 'Organizations, Minor Groups',
+    imageUrl: 'https://cdn.cancercenter.com/-/media/ctca/images/others/blogs/2021/02-february/blog-support-groups-l.jpg',
+    resources: urls['Resources']!,
+  ),
+];
