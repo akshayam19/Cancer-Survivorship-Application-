@@ -95,7 +95,7 @@ Widget roadmap(BuildContext context) {
           color: Colors.transparent, // make icon blank
           size: 80,
         ),
-        nextPage: "survey",
+        nextPage: "",
       ),
 
       // Stage 1 tile
@@ -117,13 +117,13 @@ Widget roadmap(BuildContext context) {
         isFirst: false,
         isLast: false,
         isPast: false,
-        stage: "Survey",
+        stage: "Stage:\nPre-treatment",
         icon: Icon(
           Icons.check_box_outline_blank,
           color: Colors.transparent,
           size: 80,
         ),
-        nextPage: "survey",
+        nextPage: "pre-treatment",
       ),
 
       // Stage 2 tile
@@ -145,13 +145,13 @@ Widget roadmap(BuildContext context) {
         isFirst: false,
         isLast: false,
         isPast: false,
-        stage: "Survey",
+        stage: "Stage\nPost-treatment",
         icon: Icon(
           Icons.check_box_outline_blank,
           color: Colors.transparent,
           size: 80,
         ),
-        nextPage: "survey",
+        nextPage: "post-treatment",
       ),
 
       // End timeline
@@ -159,13 +159,13 @@ Widget roadmap(BuildContext context) {
         isFirst: false,
         isLast: true,
         isPast: false,
-        stage: "Stage\nPost-treatment",
+        stage: "Survey",
         icon: Icon(
           Icons.flag,
           color: Color.fromARGB(255, 175, 201, 58),
           size: 80,
         ),
-        nextPage: "post-treatment",
+        nextPage: "",
       ),
     ],
   );
@@ -173,9 +173,7 @@ Widget roadmap(BuildContext context) {
 
 // Resources page
 Widget resources(BuildContext context) {
-  return const Center(
-    child: Info_Hub()
-  );
+  return const Center(child: Info_Hub());
 }
 
 // Settings page

@@ -66,6 +66,26 @@ flutter:
 
   assets:
     - lib/images/flutter-logo.png
+    - lib/images/Diagnosis1.png
+    - lib/images/Diagnosis2.png
+    - lib/images/Diagnosis3.png
+    - lib/images/Diagnosis4.png
+    - lib/images/pre-treatment1.png
+    - lib/images/pre-treatment2.png
+    - lib/images/pre-treatment3.png
+    - lib/images/pre-treatment4.png
+    - lib/images/treatment1.png
+    - lib/images/treatment2.png
+    - lib/images/treatment3.png
+    - lib/images/treatment4.png
+    - lib/images/treatment5.png
+    - lib/images/post-treatment1.png
+    - lib/images/post-treatment2.png
+    - lib/images/post-treatment3.png
+    - lib/images/post-treatment4.png
+    - lib/images/post-treatment5.png
+    - lib/images/post-treatment6.png
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
