@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:survivorship_care_plan_app/pages/info_hub.dart';
 import 'package:survivorship_care_plan_app/pages/setting.dart';
 import 'package:survivorship_care_plan_app/pages/survey.dart';
-import '/theme.dart';
 import 'package:survivorship_care_plan_app/roadmap_components/timeline_tile.dart';
 
 // Main page of app
